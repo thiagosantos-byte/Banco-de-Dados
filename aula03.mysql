@@ -1,0 +1,174 @@
+use aula03;
+
+create table jogador(
+
+id int auto_increment primary key unique,
+cpf char (14) unique,
+nome varchar(100) not null,
+numero_camisa int not null unique,
+data_de_nascimento date
+);
+
+
+/*drop table jogador;*/
+
+DESCRIBE nome_da_tabela;
+
+insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+"000.000.000-01", 
+"Gabigol",
+ "5",
+ "2000-12-12"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-02",
+ "Neymar",
+ "10",
+"2003-05-09"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-03",
+ "Messi",
+ "11",
+"1980-07-15"
+ );
+ 
+insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-04",
+ "CR7",
+ "7",
+"2002-01-09"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-05",
+ "Iniesta",
+ "8",
+"03/05/2004"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-06",
+ "Xavi",
+ "6",
+"1975-06-27"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-07",
+ "Neuer",
+ "1",
+"1990-08-27"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-08",
+ "Ronaldinho",
+ "15",
+"1995-09-20"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.000-09",
+ "Ronaldo Fenomeno",
+ "10",
+"1993-05-10"
+ );
+ 
+ insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.001-00",
+ "Nesta",
+ "13",
+"1980-03-13"
+ );
+ 
+insert into jogador (cpf, nome, numero_camisa, data_de_nascimento) values (
+ "000.000.002-00",
+ "Maldini",
+ "3",
+"1980-03-3"
+ );
+
+select * from jogador;
+
+truncate table jogador;
+ 
+ALTER TABLE jogador add altura INT;
+DESCRIBE jogador;
+
+INSERT INTO jogador (cpf, nome, numero_camisa, altura, data_nsc) VALUES
+( "000.000.001-00",
+ "Nesta",
+ "13",
+"1980-03-13"), 
+("000.000.000-09",
+ "Ronaldo Fenomeno",
+ "10",
+"1993-05-10"),
+
+("000.000.000-08",
+ "Ronaldinho",
+ "15",
+"1995-09-20"),
+ ("000.000.000-01", 
+"Gabigol",
+ "5",
+ "2000-12-12"
+),
+("000.000.000-04",
+ "CR7",
+ "7",
+"2002-01-09"), 
+( "000.000.002-00",
+ "Maldini",
+ "3",
+"1980-03-3"),
+("000.000.000-07",
+ "Neuer",
+ "1",
+"1990-08-27"),
+ ( "000.000.000-06",
+ "Xavi",
+ "6",
+"1975-06-27"),
+("000.000.000-05",
+ "Iniesta",
+ "8",
+"03/05/2004"), 
+("000.000.000-03",
+ "Messi",
+ "11",
+"1980-07-15");
+
+DROP TABLE jogador;
+
+CREATE TABLE time (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_time VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE jogador (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    numero_camisa VARCHAR(3),
+    time_id INT,
+    FOREIGN KEY (time_id) REFERENCES time(id),
+
+    UNIQUE KEY unique_camisa_time (numero_camisa, time_id) 
+);
+
+
+INSERT INTO time (nome_time) VALUES ('Flamengo'), ('Vasco');
+
+
+INSERT INTO jogador (nome, numero_camisa, time_id) VALUES 
+('Ronaldinho', '15', 1), ('Gabigol', '5', 1);
+
+
+INSERT INTO jogador (nome, numero_camisa, time_id) VALUES 
+('Nesta', '3', 2), ('Messi', '10', 2);
+
+  
+ SELECT * FROM jogador;
