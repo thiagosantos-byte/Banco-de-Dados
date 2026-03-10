@@ -1,0 +1,44 @@
+-- Criar o banco de dados (opcional)
+CREATE DATABASE SistemaUniversidade;
+USE SistemaUniversidade;
+
+-- 1. Tabela de Professores
+CREATE TABLE Professores (
+    id_professor INT NOT NULL AUTO_INCREMENT,
+    nome_completo VARCHAR(100) NOT NULL,
+    area_especializacao VARCHAR(100),
+    PRIMARY KEY (id_professor)
+);
+
+-- 2. Tabela de Alunos
+CREATE TABLE Alunos (
+    matricula INT NOT NULL AUTO_INCREMENT,
+    nome_completo VARCHAR(100) NOT NULL,
+    curso VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    PRIMARY KEY (matricula)
+);
+
+-- 3. Tabela de Disciplinas
+CREATE TABLE Disciplinas (
+    codigo_disciplina VARCHAR(10) NOT NULL,
+    nome_disciplina VARCHAR(100) NOT NULL,
+    carga_horaria INT,
+    id_professor INT, -- Assumindo que uma disciplina pode ter um professor responsável
+    PRIMARY KEY (codigo_disciplina),
+    FOREIGN KEY (id_professor) REFERENCES Professores(id_professor)
+);
+
+-- 4. Tabela de Matrículas (Relacionamento N:N entre Alunos e Disciplinas)
+CREATE TABLE Matriculas (
+    id_matricula INT NOT NULL AUTO_INCREMENT,
+    matricula_aluno INT NOT NULL,
+    codigo_disciplina VARCHAR(10) NOT NULL,
+    semestre VARCHAR(10) NOT NULL, -- Ex: "2026/1"
+    PRIMARY KEY (id_matricula),
+    FOREIGN KEY (matricula_aluno) REFERENCES Alunos(matricula),
+    FOREIGN KEY (codigo_disciplina) REFERENCES Disciplinas(codigo_disciplina),
+    -- Garante que o aluno não se matricule na mesma disciplina no mesmo semestre
+    UNIQUE(matricula_aluno, codigo_disciplina, semestre)
+);
+
