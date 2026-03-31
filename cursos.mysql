@@ -1,0 +1,26 @@
+CREATE TABLE Curso (
+  id_curso INT PRIMARY KEY,
+  nome_curso VARCHAR(254),
+  cadastrar_aluno BOOLEAN
+);
+
+CREATE TABLE Aluno (
+  id_aluno INT PRIMARY KEY,
+  nome_aluno VARCHAR(254),
+  cpf_aluno VARCHAR(11),
+  idade_aluno INT,
+  id_curso INT,
+  CONSTRAINT FK_CursosAlunos FOREIGN KEY (id_curso) REFERENCES Curso(id_curso)
+);
+
+INSERT INTO Curso (id_curso, nome_curso, cadastrar_aluno) VALUES
+(1, 'Matematica', TRUE);
+
+INSERT INTO Aluno (id_aluno, nome_aluno, cpf_aluno, idade_aluno, id_curso) VALUES
+(50, 'Andre', '12345678911', 20, 1);
+
+SELECT * FROM Aluno;
+
+SELECT a.nome_aluno, c.nome_curso
+FROM Aluno a
+INNER JOIN Curso c ON a.id_curso = c.id_curso;
